@@ -6,7 +6,7 @@
 /*   By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 12:44:47 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/23 15:47:32 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/23 18:32:56 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void				ft_delcontent(void *content, unsigned long content_size);
 void				ft_lstenqueue(t_list **list, t_list *elem);
 t_list				*ft_lstdupone(t_list *elem);
 t_list				*ft_lstdup(t_list *list);
+t_list				*ft_lstipos(t_list *list, unsigned long i);
 
 #endif

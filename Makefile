@@ -6,7 +6,7 @@
 #    By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 17:06:41 by lutsiara          #+#    #+#              #
-#    Updated: 2018/11/23 15:48:02 by lutsiara         ###   ########.fr        #
+#    Updated: 2018/11/23 19:06:21 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ FLAGS = -Wall -Werror -Wextra
 SRCDIR = ./
 
 INCDIR = ./
+
+LIBDIR = ./
 
 LIB = libft.a
 
@@ -94,16 +96,20 @@ LIBSRCS = $(SRCDIR)ft_atoi.c \
 		  $(SRCDIR)ft_toupper.c \
 		  $(SRCDIR)ft_abs.c \
 		  $(SRCDIR)ft_paw.c \
+		  $(SRCDIR)ft_lstipos.c \
 		  $(SRCDIR)get_next_line.c
 
 LIBOBJS = $(LIBSRCS:.c=.o)
 
-SRCS = $(SRCDIR)main.c
+SRCS = $(SRCDIR)main.c \
+	   $(SRCDIR)ft_new_tetrimino.c \
+	   $(SRCDIR)ft_strtobin.c \
+	   $(SRCDIR)ft_measure_tetrimino.c
 
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(LIB) $(OBJS)
-	@$(CC) -o $@ $(OBJS) -I $(INCDIR) $(FLAGS) -L ./ -lft
+	@$(CC) -o $@ $(OBJS) -I $(INCDIR) $(FLAGS) -L $(LIBDIR) -lft
 	@echo "make $(NAME)\033[0;32m ✓\033[0m"
 
 $(LIB): $(LIBOBJS)
