@@ -6,7 +6,7 @@
 /*   By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 12:44:47 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/21 16:51:07 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/23 15:47:32 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct		s_list
 }					t_list;
 
 unsigned long		ft_abs(long x);
+long				ft_paw(long x, unsigned int n);
 void				*ft_memset(void *b, int c, unsigned long len);
 void				ft_bzero(void *s, unsigned long n);
 void				*ft_memcpy(void *dst, const void *src, unsigned long n);

@@ -6,7 +6,7 @@
 #    By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 17:06:41 by lutsiara          #+#    #+#              #
-#    Updated: 2018/11/21 18:29:56 by lutsiara         ###   ########.fr        #
+#    Updated: 2018/11/23 15:48:02 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ LIBSRCS = $(SRCDIR)ft_atoi.c \
 		  $(SRCDIR)ft_tolower.c \
 		  $(SRCDIR)ft_toupper.c \
 		  $(SRCDIR)ft_abs.c \
+		  $(SRCDIR)ft_paw.c \
 		  $(SRCDIR)get_next_line.c
 
 LIBOBJS = $(LIBSRCS:.c=.o)
