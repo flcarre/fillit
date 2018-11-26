@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/26 18:14:37 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/26 19:50:37 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,7 @@ int		main(int ac, char **av)
 		return (1);
 	}
 	fd = open(av[ac - 1], O_RDONLY);
-	line = (void *)0;
-	tmp = (void *)0;
-	while (get_next_line(0, &line))
-	{
-		s = tmp;
-		tmp = ft_strjoin(tmp, line);
-		if (s)
-			free(s);
-		free(line);
-		line = (void *)0;
-	}
 	close(fd);
-	if (!(l = ft_new_tetrimino(tmp)))
-		return (1);
 	x = 0x4C40;
 	y = (unsigned short *)(ft_lstipos((t_list *)l->content, 1))->content;
 	mask = 0x0010;
