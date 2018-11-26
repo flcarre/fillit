@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 17:06:41 by lutsiara          #+#    #+#              #
-#    Updated: 2018/11/23 19:06:21 by lutsiara         ###   ########.fr        #
+#    Updated: 2018/11/26 22:59:41 by flcarre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,10 @@ LIBOBJS = $(LIBSRCS:.c=.o)
 
 SRCS = $(SRCDIR)main.c \
 	   $(SRCDIR)ft_new_tetrimino.c \
-	   $(SRCDIR)ft_strtobin.c \
+		 $(SRCDIR)ft_strtobin.c \
+		 $(SRCDIR)ft_get_tetriminos.c \
+		 $(SRCDIR)ft_set_mask.c \
+	   $(SRCDIR)ft_set_mask2.c \
 	   $(SRCDIR)ft_measure_tetrimino.c
 
 OBJS = $(SRCS:.c=.o)

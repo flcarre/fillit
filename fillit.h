@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:15:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/23 17:45:19 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/26 22:59:21 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef struct		s_tetri
 # include <fcntl.h>
 
 t_list				*ft_new_tetrimino(char *tetrimino);
+int			ft_get_tetriminos(const int fd, t_list **list);
+unsigned short **ft_set_mask();
+unsigned short *maskset4(int i);
 void				ft_strtobin(char *tetrimino, unsigned short *bin);
 void				ft_measure_tetrimino(unsigned short *bin, \
 					unsigned short *width, unsigned short *height);
