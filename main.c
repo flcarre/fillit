@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/23 19:13:22 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/26 18:14:37 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		main(int ac, char **av)
 	fd = open(av[ac - 1], O_RDONLY);
 	line = (void *)0;
 	tmp = (void *)0;
-	while (get_next_line(fd, &line))
+	while (get_next_line(0, &line))
 	{
 		s = tmp;
 		tmp = ft_strjoin(tmp, line);
@@ -45,7 +45,7 @@ int		main(int ac, char **av)
 	close(fd);
 	if (!(l = ft_new_tetrimino(tmp)))
 		return (1);
-	x = 0x44C0;
+	x = 0x4C40;
 	y = (unsigned short *)(ft_lstipos((t_list *)l->content, 1))->content;
 	mask = 0x0010;
 	end = 0x0001;
