@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/26 21:02:54 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/27 11:26:22 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int		main(int ac, char **av)
 	t_list			*i;
 	int				fd;
 	int				r;
+	int				n;
 	unsigned short	*y;
 	unsigned short	x;
-	unsigned short	mask;
 	unsigned short	end;
+	unsigned short	depl;
+	unsigned short	mask;
+	unsigned short	set_mask[19][4];
 
 	if (ac != 2)
 	{
@@ -58,24 +61,31 @@ int		main(int ac, char **av)
 		ft_putchar('\n');
 		i = i->next;
 	}
-	x = 0x4C40;
+	n = 0;
+	ft_set_mask(set_mask);
 	y = (unsigned short *)(ft_lstipos((t_list *)l->content, 1))->content;
-	mask = 0x0010;
-	end = 0x0001;
-	while ((x & end) != end)
+	while (n < 19)
 	{
-		if ((x & *y) == *y)
+		mask = set_mask[n][0];
+		x = set_mask[n][1];
+		end = set_mask[n][2];
+		depl = set_mask[n][3];
+		while ((x & end) != end)
 		{
-			printf("valid: %x\n", x & *y);
-			return (0);
+			if ((x & *y) == *y)
+			{
+				printf("valid: %x\n", x & *y);
+				return (0);
+			}
+			if ((x & mask) == mask)
+			{
+				x = x >> depl;
+				mask = mask >> 4;
+			}
+			else
+				x = x >> 1;
 		}
-		if ((x & mask) == mask)
-		{
-			x = x >> 2;
-			mask = mask >> 4;
-		}
-		else
-			x = x >> 1;
+		n++;
 	}
 	printf("invalid: %x\n", x & *y);
 	return (0);
