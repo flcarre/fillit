@@ -6,18 +6,18 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:37:05 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/27 11:43:38 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/27 11:49:09 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-/*piece value = ret[0] // x = ret[1] // end = ret[2] // >>x = ret[3]*/
-static void maskset_O(int i, unsigned short ret[4]);
-static void maskset_1(int i, unsigned short ret[4]);
-static void maskset_2(int i, unsigned short ret[4]);
-static void maskset_3(int i, unsigned short ret[4]);
 
-void ft_set_mask(unsigned short mask[19][4])
+static void	maskset_O(int i, unsigned short ret[4]);
+static void	maskset_1(int i, unsigned short ret[4]);
+static void	maskset_2(int i, unsigned short ret[4]);
+static void	maskset_3(int i, unsigned short ret[4]);
+
+void		ft_set_mask(unsigned short mask[19][4])
 {
 	maskset_0(0, mask[0]);
 	maskset_1(1, mask[1]);
@@ -40,7 +40,7 @@ void ft_set_mask(unsigned short mask[19][4])
 	maskset_3(18, mask[18]);
 }
 
-static void maskset_O(int i, unsigned short ret[4])
+static void	maskset_O(int i, unsigned short ret[4])
 {
 	if(i == 0)
 		ret[0] = 0xE200;
@@ -57,9 +57,8 @@ static void maskset_O(int i, unsigned short ret[4])
 	ret[3] = 3;
 }
 
-static void maskset_1(int i, unsigned short ret[4])
+static void	maskset_1(int i, unsigned short ret[4])
 {
-
 	if(i == 1)
 		ret[0] = 0x44C0;
 	if(i == 5)
@@ -73,12 +72,10 @@ static void maskset_1(int i, unsigned short ret[4])
 	ret[1] = 0x0100;
 	ret[2] = 0x0001;
 	ret[3] = 2;
-
 }
 
-static void maskset_2(int i, unsigned short ret[4])
+static void	maskset_2(int i, unsigned short ret[4])
 {
-
 	if(i == 4)
 		ret[0] = 0xE400;
 	if(i == 12)
@@ -86,12 +83,10 @@ static void maskset_2(int i, unsigned short ret[4])
 	ret[1] = 0x0200;
 	ret[2] = 0x0002;
 	ret[3] = 3;
-
 }
 
-static void maskset_3(int i, unsigned short ret[4])
+static void	maskset_3(int i, unsigned short ret[4])
 {
-
 	if(i == 3)
 		ret[0] = 0xC880;
 	if(i == 7)
