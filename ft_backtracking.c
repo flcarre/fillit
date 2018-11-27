@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 13:29:13 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/27 16:58:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/27 18:03:31 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,31 @@ static int	ft_isfree(int size, char *tab, t_list *l, int i)
 	unsigned short	w;
 	unsigned short	h;
 	char			*t;
-	unsigned short	n;
+	unsigned short	n[2];
 	unsigned short	f;
 
+
 	f = 1;
+	n[0] = 0;
 	t = (char *)(ft_lstipos((t_list *)l->content, 0))->content;
 	w = *((unsigned short *)(ft_lstipos((t_list *)l->content, 3))->content);
 	h = *((unsigned short *)(ft_lstipos((t_list *)l->content, 4))->content);
-	n = 0;
-	while (n < 16)
-	{
-		if (tab[i])
-	}
-	return (0);
+		if (tab[i] == '.')
+		{
+			n[1] = 0;
+			while (n[1] < w * h)
+			{
+					n[0] += (!(n[1] % w) && n[1]) ? size : 0;
+					f = (tab[i + n[0]] == '.' && t[n[1]] == '#') ? 1 : f;
+					f = (tab[i + n[0]] != '.' && t[n[1]] == '#') ? 0 : f;
+					if (!f)
+						return (0);
+					n[1]++;
+			}
+		}
+		else
+			f = 0;
+	return ((int)f);
 }
 
 static void	ft_place(int size, char *tab, t_list *l, int i)
