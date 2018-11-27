@@ -6,12 +6,11 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:59:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/27 11:56:39 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/27 12:36:03 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 static int	ft_badchar(char *line)
 {
@@ -22,16 +21,6 @@ static int	ft_badchar(char *line)
 		line++;
 	}
 	return (0);
-}
-
-static void	ft_del_tetriminos(t_list **list)
-{
-	if (!list || !(*list))
-		return ;
-	ft_del_tetriminos(&(*list)->next);
-	ft_lstdel((t_list **)&((*list)->content), &ft_delcontent);
-	(*list)->content_size = 0;
-	ft_lstdelone(list, &ft_delcontent);
 }
 
 static int	ft_get(const int fd, char **tmp)
@@ -51,9 +40,8 @@ static int	ft_get(const int fd, char **tmp)
 		{
 			free(line);
 			ft_memdel((void **)&(*tmp));
-			return (-2);
+			return (-1);
 		}
-
 		s = *tmp;
 		*tmp = ft_strjoin(*tmp, line);
 		if (s)
@@ -61,7 +49,7 @@ static int	ft_get(const int fd, char **tmp)
 		i++;
 	}
 	ft_memdel((void **)&line);
-	return ((r < 0) ? -1 : 0);
+	return ((r < 0) ? -2 : 0);
 }
 
 int			ft_get_tetriminos(const int fd, t_list **list)

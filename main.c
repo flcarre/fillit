@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/27 11:26:22 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/27 12:20:02 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,43 @@ int		main(int ac, char **av)
 		ft_putchar('\n');
 		i = i->next;
 	}
-	n = 0;
+	i = l;
 	ft_set_mask(set_mask);
-	y = (unsigned short *)(ft_lstipos((t_list *)l->content, 1))->content;
-	while (n < 19)
+	while (i)
 	{
-		mask = set_mask[n][0];
-		x = set_mask[n][1];
-		end = set_mask[n][2];
-		depl = set_mask[n][3];
-		while ((x & end) != end)
+		y = (unsigned short *)(ft_lstipos((t_list *)i->content, 1))->content;
+		n = 0;
+		while (n < 19)
 		{
+			mask = set_mask[n][1];
+			x = set_mask[n][0];
+			end = set_mask[n][2];
+			depl = set_mask[n][3];
+			while ((x & end) != end)
+			{
+				if ((x & *y) == *y)
+				{
+					printf("valid: %x\n", x & *y);
+					break ;
+				}
+				if ((x & mask) == mask)
+				{
+					x = x >> depl;
+					mask = mask >> 4;
+				}
+				else
+					x = x >> 1;
+			}
 			if ((x & *y) == *y)
 			{
 				printf("valid: %x\n", x & *y);
-				return (0);
+				break ;
 			}
-			if ((x & mask) == mask)
-			{
-				x = x >> depl;
-				mask = mask >> 4;
-			}
-			else
-				x = x >> 1;
+			n++;
 		}
-		n++;
+		if (n == 19)
+			printf("invalid: %x\n", x & *y);
+		i = i->next;
 	}
-	printf("invalid: %x\n", x & *y);
 	return (0);
 }

@@ -6,12 +6,11 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:37:05 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/27 11:54:01 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/27 12:12:51 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
 
 static void	maskset_1(int i, unsigned short ret[4]);
 static void	maskset_2(int i, unsigned short ret[4]);
