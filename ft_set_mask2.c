@@ -6,13 +6,13 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 22:40:47 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/27 11:43:45 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/27 11:54:04 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void maskset_4(int i, unsigned short ret[4])
+void maskset_5(int i, unsigned short ret[4])
 {
 	if(i == 8)
 	{

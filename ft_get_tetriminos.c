@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:59:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/26 21:12:26 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/27 11:56:39 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ static int	ft_get(const int fd, char **tmp)
 	*tmp = (void *)0;
 	while ((r = get_next_line(fd, &line)) > 0)
 	{
+		if (!ft_strlen(line) && i == 4)
+			return (1);
 		if (i > 4 || ft_strlen(line) != 4 || ft_badchar(line))
 		{
 			free(line);
 			ft_memdel((void **)&(*tmp));
-			return (-1);
+			return (-2);
 		}
-		if (!ft_strlen(line))
-			return (1);
+
 		s = *tmp;
 		*tmp = ft_strjoin(*tmp, line);
 		if (s)
@@ -82,7 +83,7 @@ int			ft_get_tetriminos(const int fd, t_list **list)
 	{
 		ft_memdel((void **)&tmp);
 		ft_del_tetriminos(list);
-		return (1);
+		return (r == -2 ? -1 : 1);
 	}
 	return (0);
 }
