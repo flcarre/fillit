@@ -6,7 +6,7 @@
 #    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 17:06:41 by lutsiara          #+#    #+#              #
-#    Updated: 2018/11/27 13:23:09 by flcarre          ###   ########.fr        #
+#    Updated: 2018/11/27 17:23:41 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,14 +103,16 @@ LIBOBJS = $(LIBSRCS:.c=.o)
 
 SRCS = $(SRCDIR)main.c \
 	   $(SRCDIR)ft_new_tetrimino.c \
-		 $(SRCDIR)ft_strtobin.c \
-		 $(SRCDIR)ft_get_tetriminos.c \
-		 $(SRCDIR)ft_del_tetriminos.c \
-		 $(SRCDIR)ft_set_mask.c \
-		 $(SRCDIR)ft_set_mask2.c \
-		 $(SRCDIR)ft_isinvalid.c \
+	   $(SRCDIR)ft_strtobin.c \
+	   $(SRCDIR)ft_get_tetriminos.c \
+	   $(SRCDIR)ft_del_tetriminos.c \
+	   $(SRCDIR)ft_set_mask.c \
+	   $(SRCDIR)ft_set_mask2.c \
+	   $(SRCDIR)ft_isinvalid.c \
 	   $(SRCDIR)ft_solve.c \
-	   $(SRCDIR)ft_measure_tetrimino.c
+	   $(SRCDIR)ft_backtracking.c \
+	   $(SRCDIR)ft_measure_tetrimino.c \
+	   $(SRCDIR)ft_print_square.c
 
 OBJS = $(SRCS:.c=.o)
 
