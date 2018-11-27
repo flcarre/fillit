@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 12:58:23 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/27 17:18:39 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/27 20:18:58 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int			ft_solve(t_list *l, char **tab)
 {
 	int		size;
 
+	if (ft_fit_tetriminos(l))
+		return (-1);
 	size = ft_max(l);
 	ft_square(&(*tab), size);
 	while (!ft_backtracking(size, *tab, l))

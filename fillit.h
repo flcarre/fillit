@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:15:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/27 17:20:43 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/27 20:18:03 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void				ft_strtobin(char *tetrimino, unsigned short *bin);
 void				ft_measure_tetrimino(unsigned short *bin, \
 					unsigned short *width, unsigned short *height);
 int					ft_solve(t_list *l, char **tab);
+int					ft_fit_tetriminos(t_list *list);
 int					ft_backtracking(int size, char *tab, t_list *l);
 void				ft_print_square(char **s, int size);
 
