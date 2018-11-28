@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:45:14 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 17:00:24 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 17:31:47 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int			ft_fit_tetriminos(t_list *list)
 	char			*t;
 	unsigned short	w;
 	unsigned short	h;
+
 	while (list)
 	{
 		t = (char *)(ft_lstipos((t_list *)list->content, 0))->content;

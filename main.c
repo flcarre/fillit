@@ -6,11 +6,37 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 17:21:36 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 17:50:41 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+static int	ft_max(t_list *l)
+{
+	int		max;
+	unsigned short h;
+	unsigned short w;
+
+	max = 0;
+	ft_putendl("1");
+	while (l)
+	{
+		ft_putendl("1.1");
+		h = *((unsigned short *)(ft_lstipos((t_list *)l->content, 4))->content);
+		ft_putendl("1.2");
+		w = *((unsigned short *)(ft_lstipos((t_list *)l->content, 3))->content);
+		ft_putendl("2");
+		max = ((unsigned short)max < w) ? (int)w : max;
+		ft_putendl("3");
+		max = ((unsigned short)max < h) ? (int)h : max;
+		ft_putendl("4");
+		l = l->next;
+		ft_putendl("5");
+	}
+	ft_putendl("WTF");
+	return (max);
+}
 
 int		main(int ac, char **av)
 {
@@ -48,8 +74,9 @@ int		main(int ac, char **av)
 		ft_putchar('\n');
 		i = i->next;
 	}
-	if (l)
-		r = ft_solve(l, &s);
+	r = ft_fit_tetriminos(l);
+	if (!r && l)
+		r = ft_solve(l, &s, ft_max(l));
 		ft_putendl("GOD");
 	if (s)
 		ft_print_square(&s, r);
