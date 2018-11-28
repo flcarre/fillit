@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 22:56:41 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/28 23:10:59 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 23:47:21 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ void	ft_strtobin2(char *tetrimino, unsigned short *bin, int len)
 	while (len--)
 	{
 		if (tetrimino[len] == '.')
-		{
 			i++;
-			*bin += 0;
-		}
 		else if (tetrimino[len] == '#')
 			*bin += (unsigned short)ft_paaw(2, i++);
 	}
