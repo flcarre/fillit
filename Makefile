@@ -110,7 +110,7 @@ SRCS = $(SRCDIR)main.c \
 	   $(SRCDIR)ft_set_mask2.c \
 	   $(SRCDIR)ft_isinvalid.c \
 	   $(SRCDIR)ft_solve.c \
-		 $(SRCDIR)ft_fit_tetriminos.c \
+	   $(SRCDIR)ft_fit_tetriminos.c \
 	   $(SRCDIR)ft_binchar_to_short.c \
 	   $(SRCDIR)ft_backtracking.c \
 	   $(SRCDIR)ft_measure_tetrimino.c \

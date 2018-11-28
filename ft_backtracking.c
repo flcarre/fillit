@@ -22,22 +22,24 @@ static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 	newbin = 0;
 	bin = 0;
 	n = 0;
-	tmp = ft_strnew(ft_strlen(tab));
-	while (n < e->w * e->h && n < (size * size - e->w))
+	tmp = ft_strnew(e->w * e->h);
+	while (n < e->w * e->h && i + e->w * e->h < size * size)
 	{
 		tmp[n] = tab[i];
-		i++;
 		n++;
 		printf("n = %d w = %d\n", n, (int)e->w);
-		if (i % e->w == 0)
+		if (n % e->w == 0)
 		{
 			i += size;
 		}
+		else
+			i++;
 	}
 	ft_strtobin2(tmp, &newbin, (int)(e->w * e->h));
 	ft_strtobin2(e->s, &bin, (int)(e->w * e->h));
 	printf("new = %x ///// bin =%x\n", newbin, bin);
 	printf("newstr = %s ///// str =%s\n", tmp, e->s);
+	free(tmp);
 	if((bin ^ newbin) == bin)
 	{
 		printf("____________________________\n");
@@ -57,8 +59,8 @@ static void	ft_place(int size, char *tab, t_tet *l, int i)
 	n[0] = 0;
 	while (n[1] < l->w * l->h)
 	{
-		n[0] += (!(n[1] % l->w) && n[1]) ? size : 0;
 		tab[i + n[0]] = (tab[i + n[0]] == '.' && (l->s)[n[1]] == '#') ? c : '.';
+		n[0] += (!(n[1] % l->w) && n[1]) ? size : 1;
 		n[1]++;
 	}
 }
@@ -71,8 +73,8 @@ static void	ft_reset(int size, char *tab, t_tet *l, int i)
 	n[0] = 0;
 	while (n[1] < l->w * l->h)
 	{
-		n[0] += (!(n[1] % l->w) && n[1]) ? size : 0;
 		tab[i + n[0]] = ((l->s)[n[1]] == '#') ? '.' : tab[i + n[0]];
+		n[0] += (!(n[1] % l->w) && n[1]) ? size : 1;
 		n[1]++;
 	}
 }
@@ -85,12 +87,8 @@ int			ft_backtracking(int size, char *tab, t_tet *l)
 	if (!l)
 		return (1);
 	i = 0;
-	while (tab[i])
+	while (tab[i] && (i + l->w * l->h) < size * size)
 	{
-		tab[1] = '#';
-		tab[5] = '#';
-		tab[9] = '#';
-		tab[13] = '#';
 		if ((z = ft_isfree(size, tab, l, i)))
 		{
 			printf("test %d\n", z);
