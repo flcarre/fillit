@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:59:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 16:26:01 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 16:41:48 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,32 @@ static int	ft_badchar(char *line)
 
 static int	ft_get(const int fd, char **tmp)
 {
-	char		*line;
-	char		*s;
+	char		*l[2];
 	int			r[2];
 
 	r[1] = 0;
-	tmp = (void *)0;
-	while ((r[0] = get_next_line(fd, &line)) > 0 && ft_strlen(line))
+	*tmp = (void *)0;
+	while ((r[0] = get_next_line(fd, &l[0])) > 0 && ft_strlen(l[0]) && ++r[1])
 	{
-		if (r[1]++ > 4 || ft_strlen(line) != 4 || ft_badchar(line))
+		if (r[1] > 4 || ft_strlen(l[0]) != 4 || ft_badchar(l[0]))
 		{
-			free(line);
+			free(l[0]);
 			ft_memdel((void **)&(*tmp));
 			return (-1);
 		}
-		s = *tmp;
-		*tmp = ft_strjoin(*tmp, line);
-		if (s)
-			free(s);
+		l[1] = *tmp;
+		*tmp = ft_strjoin(*tmp, l[0]);
+		if (l[1])
+			free(l[1]);
 	}
-	if ((!ft_strlen(line) && r[1] == 4))
-	{	
-		ft_memdel((void **)&line);
+	ft_putnbr(r[1]);
+	ft_putendl("<- r[1] value");
+	if (l[0] && r[1] == 4)
+	{
+		ft_memdel((void **)&l[0]);
 		return (1);
 	}
+	ft_memdel((void **)&l[0]);
 	return ((r[0] < 0) ? -2 : 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/27 17:22:12 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 16:35:10 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		main(int ac, char **av)
 {
 	t_list			*l;
+	t_list			*i;
 	int				fd;
 	int				r;
 	char			*s;
@@ -26,6 +27,26 @@ int		main(int ac, char **av)
 	{
 		ft_putendl("error");
 		return (1);
+	}
+	i = l;
+	while(i)
+	{
+		ft_putendl("width");
+		ft_putnbr(*((int *)(ft_lstipos((t_list *)i->content, 3))->content));
+		ft_putchar('\n');
+		ft_putendl("height");
+		ft_putnbr(*((int *)(ft_lstipos((t_list *)i->content, 4))->content));
+		ft_putchar('\n');
+		ft_putendl("bin");
+		ft_putnbr(*((int *)(ft_lstipos((t_list *)i->content, 1))->content));
+		ft_putchar('\n');
+		ft_putendl("str");
+		ft_putendl((char *)(ft_lstipos((t_list *)i->content, 0))->content);
+		ft_putendl("letter");
+		ft_putchar(*((char *)(ft_lstipos((t_list *)i->content, 2))->content));
+		ft_putchar('\n');
+		ft_putchar('\n');
+		i = i->next;
 	}
 	if (l)
 		r = ft_solve(l, &s);
