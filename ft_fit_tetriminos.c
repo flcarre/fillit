@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:45:14 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 18:46:00 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 21:01:45 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ static void	ft_ipos(unsigned short mask[19][4], unsigned short x, \
 	while (++n < 19)
 	{
 		*i = 0;
-		while ((mask[n][0] & x) != x && \
-				(mask[n][0] & mask[n][2]) != mask[n][2])
+		while (mask[n][0] != x && (mask[n][0] & mask[n][2]) != mask[n][2])
 		{
 			(*i)++;
 			mask[n][0] = mask[n][0] >> 1;
 		}
-		if ((mask[n][0] & x) != x)
+		if ((mask[n][0] & x) == mask[n][0])
 			return ;
 	}
 }

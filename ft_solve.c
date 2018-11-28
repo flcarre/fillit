@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 12:58:23 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/28 19:51:08 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 21:02:01 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int			ft_solve(t_tet *l, char **tab)
 {
 	int		size;
 
-	ft_putendl("GOD");
 	if (ft_fit_tetriminos(l))
 		return (-1);
 	size = ft_max(l);

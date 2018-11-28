@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:15:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 18:05:55 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 23:09:22 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FILLIT_H
 
 # include "libft.h"
+#	include <stdio.h>
 # include "get_next_line.h"
 # include <fcntl.h>
 
@@ -34,6 +35,7 @@ void				ft_set_mask(unsigned short mask[19][4]);
 void				maskset_5(int i, unsigned short ret[4]);
 int					ft_isinvalid(t_tet **list);
 void				ft_strtobin(char *tetrimino, unsigned short *bin);
+void				ft_strtobin2(char *tetrimino, unsigned short *bin, int len);
 void				ft_measure_tetrimino(unsigned short *bin, \
 					unsigned short *width, unsigned short *height);
 int					ft_solve(t_tet *l, char **tab);

@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtobin.c                                      :+:      :+:    :+:   */
+/*   ft_binchar_to_short.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 18:00:49 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 20:38:47 by flcarre          ###   ########.fr       */
+/*   Created: 2018/11/28 22:56:41 by flcarre           #+#    #+#             */
+/*   Updated: 2018/11/28 23:10:59 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
-void	ft_strtobin(char *tetrimino, unsigned short *bin)
+static long	ft_paaw(long x, unsigned int n)
 {
-	int				len;
+	long	r;
+
+	if (!n)
+		return (1);
+	r = 1;
+	while (n--)
+		r = r * x;
+	return (r);
+}
+
+void	ft_strtobin2(char *tetrimino, unsigned short *bin, int len)
+{
 	unsigned int	i;
 
-	len = 16;
 	i = 0;
 	while (len--)
 	{
 		if (tetrimino[len] == '.')
+		{
 			i++;
+			*bin += 0;
+		}
 		else if (tetrimino[len] == '#')
-			*bin += (unsigned short)ft_paw(2, i++);
+			*bin += (unsigned short)ft_paaw(2, i++);
 	}
 }
