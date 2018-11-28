@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:59:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 16:41:48 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 16:56:24 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static int	ft_get(const int fd, char **tmp)
 		if (l[1])
 			free(l[1]);
 	}
-	ft_putnbr(r[1]);
-	ft_putendl("<- r[1] value");
 	if (l[0] && r[1] == 4)
 	{
 		ft_memdel((void **)&l[0]);
