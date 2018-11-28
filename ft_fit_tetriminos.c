@@ -6,13 +6,13 @@
 /*   By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:45:14 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/27 21:03:25 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 14:22:20 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	ft_icount(unsigned short mask[19][4], unsigned short x, \
+static void	ft_ipos(unsigned short mask[19][4], unsigned short x, \
 			unsigned short *i)
 {
 	short			n;
@@ -42,12 +42,14 @@ static int	ft_fit(t_list *e, unsigned short w, unsigned short h)
 	if (!(tmp = ft_strnew(w * h)))
 		return (1);
 	ft_set_mask(mask);
-	ft_icount(mask, *((unsigned short *)((ft_lstipos((t_list \
-	*)list->content, 0))->content)), &i);
+	ft_ipos(mask, *((unsigned short *)(ft_lstipos(e, 1))->content), &i);
 	n = 0;
 	while (n < w * h)
 	{
-		i += ()
+		ft_strncpy(tmp + n, (const char *)(((ft_lstipos(e, 0))->content) + i), \
+		(unsigned long)w);
+		n += w;
+		i += 4;
 	}
 	(ft_lstipos(e, 0))->content = (void *)tmp;
 	(ft_lstipos(e, 0))->content_size = w * h + 1;

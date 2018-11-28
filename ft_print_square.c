@@ -6,15 +6,15 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 17:28:35 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/27 17:32:18 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 13:58:26 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void ft_print_square(char **s, int size)
+void	ft_print_square(char **s, int size)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while ((*s)[i])

@@ -6,96 +6,93 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 19:01:57 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/27 20:49:35 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 13:53:50 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static unsigned short ft_max(unsigned short *i, unsigned short *j)
+static unsigned short	ft_max(unsigned short *i, unsigned short *j)
 {
-	unsigned short min_i;
-	unsigned short max_j;
-	unsigned short n;
+	unsigned short	min_i;
+	unsigned short	max_j;
+	unsigned short	n;
 
 	min_i = 4;
 	max_j = 0;
 	n = 0;
 	while (n < 4)
 	{
-		if(i[n] < min_i)
+		if (i[n] < min_i)
 			min_i = i[n];
 		n++;
 	}
 	n = 0;
 	while (n < 4)
 	{
-		if(j[n] > max_j)
+		if (j[n] > max_j)
 			max_j = j[n];
 		n++;
 	}
-	return(max_j - min_i);
+	return (max_j - min_i);
 }
 
-static unsigned short ft_height(unsigned short *bin)
+static unsigned short	ft_height(unsigned short *bin)
 {
-	unsigned short i;
-	unsigned short size;
-	unsigned short beg;
-	unsigned short end;
+	unsigned short	i;
+	unsigned short	size;
+	unsigned short	beg;
+	unsigned short	end;
 
 	beg = 0x8000;
 	end = 0x0001;
 	i = 0;
 	size = 4;
-	while((*bin & beg) != beg)
+	while ((*bin & beg) != beg)
 	{
 		beg = beg >> 1;
 		i++;
 		size = (!(i % 4)) ? size - 1 : size;
 	}
 	i = 0;
-	while((*bin & end) != end)
+	while ((*bin & end) != end)
 	{
 		end = end << 1;
 		i++;
 		size = (!(i % 4)) ? size - 1 : size;
 	}
-	return(size);
+	return (size);
 }
 
-static unsigned short ft_width(unsigned short *bin)
+static unsigned short	ft_width(unsigned short *bin)
 {
-	unsigned short i[4];
-	unsigned short j[4];
-	unsigned short beg[4];
-	unsigned short end[4];
-	unsigned short a;
+	unsigned short	i[4];
+	unsigned short	j[4];
+	unsigned short	beg[4];
+	unsigned short	end[4];
+	unsigned short	a;
 
 	a = 0;
-	while(a < 4)
+	while (a < 4)
 	{
 		beg[a] = 0x8000 >> (4 * a);
 		end[a] = 0x0001 << (4 * a);
 		i[a] = 0;
-		while(i[a] < 4 && (*bin & beg[a]) != beg[a])
+		while (i[a] < 4 && (*bin & beg[a]) != beg[a])
 		{
 			i[a]++;
 			beg[a] = beg[a] >> 1;
 		}
-		j[a] = 4;
-		while(j[a] > 0 && (*bin & end[a]) != end[a])
-		{
+		j[a] = 5;
+		while (--j[a] > 0 && (*bin & end[a]) != end[a])
 			end[a] = end[a] << 1;
-			j[a]--;
-		}
 		a++;
 	}
-	return(ft_max(i, j));
+	return (ft_max(i, j));
 }
 
-void	ft_measure_tetrimino(unsigned short *bin, unsigned short *width, \
-		unsigned short *height)
+void					ft_measure_tetrimino(unsigned short *bin, \
+						unsigned short *width, unsigned short *height)
 {
 	*width = ft_width(bin);
 	*height = ft_height(bin);

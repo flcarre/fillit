@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 13:29:13 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/27 18:43:56 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 14:05:24 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,27 @@ static int	ft_isfree(int size, char *tab, t_list *l, int i)
 	unsigned short	w;
 	unsigned short	h;
 	char			*t;
-	unsigned short	n[2];
-	unsigned short	f;
+	unsigned short	n[3];
 
-	f = 1;
+	n[2] = 1;
 	n[0] = 0;
 	t = (char *)(ft_lstipos((t_list *)l->content, 0))->content;
 	w = *((unsigned short *)(ft_lstipos((t_list *)l->content, 3))->content);
 	h = *((unsigned short *)(ft_lstipos((t_list *)l->content, 4))->content);
-	if (tab[i] == '.')
+	if (tab[i] == '.' || (n[2] = 0))
 	{
 		n[1] = 0;
 		while (n[1] < w * h)
 		{
 			n[0] += (!(n[1] % w) && n[1]) ? size : 0;
-			f = (tab[i + n[0]] == '.' && t[n[1]] == '#') ? 1 : f;
-			f = (tab[i + n[0]] != '.' && t[n[1]] == '#') ? 0 : f;
-			if (!f)
+			n[2] = (tab[i + n[0]] == '.' && t[n[1]] == '#') ? 1 : n[2];
+			n[2] = (tab[i + n[0]] != '.' && t[n[1]] == '#') ? 0 : n[2];
+			if (!n[2])
 				return (0);
 			n[1]++;
 		}
 	}
-	else
-		f = 0;
-	return ((int)f);
+	return ((int)n[2]);
 }
 
 static void	ft_place(int size, char *tab, t_list *l, int i)
