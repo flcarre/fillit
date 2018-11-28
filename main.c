@@ -6,42 +6,16 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 17:50:41 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 18:05:46 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int	ft_max(t_list *l)
-{
-	int		max;
-	unsigned short h;
-	unsigned short w;
-
-	max = 0;
-	ft_putendl("1");
-	while (l)
-	{
-		ft_putendl("1.1");
-		h = *((unsigned short *)(ft_lstipos((t_list *)l->content, 4))->content);
-		ft_putendl("1.2");
-		w = *((unsigned short *)(ft_lstipos((t_list *)l->content, 3))->content);
-		ft_putendl("2");
-		max = ((unsigned short)max < w) ? (int)w : max;
-		ft_putendl("3");
-		max = ((unsigned short)max < h) ? (int)h : max;
-		ft_putendl("4");
-		l = l->next;
-		ft_putendl("5");
-	}
-	ft_putendl("WTF");
-	return (max);
-}
-
 int		main(int ac, char **av)
 {
-	t_list			*l;
-	t_list			*i;
+	t_tet			*l;
+	t_tet			*i;
 	int				fd;
 	int				r;
 	char			*s;
@@ -58,25 +32,24 @@ int		main(int ac, char **av)
 	while(i)
 	{
 		ft_putendl("width");
-		ft_putnbr(*((unsigned short *)(ft_lstipos((t_list *)i->content, 3))->content));
+		ft_putnbr(i->w);
 		ft_putchar('\n');
 		ft_putendl("height");
-		ft_putnbr(*((unsigned short *)(ft_lstipos((t_list *)i->content, 4))->content));
+		ft_putnbr(i->h);
 		ft_putchar('\n');
 		ft_putendl("bin");
-		ft_putnbr(*((unsigned short *)(ft_lstipos((t_list *)i->content, 1))->content));
+		ft_putnbr(i->b);
 		ft_putchar('\n');
 		ft_putendl("str");
-		ft_putendl((char *)(ft_lstipos((t_list *)i->content, 0))->content);
+		ft_putendl(i->s);
 		ft_putendl("letter");
-		ft_putchar(*((char *)(ft_lstipos((t_list *)i->content, 2))->content));
+		ft_putchar(i->c);
 		ft_putchar('\n');
 		ft_putchar('\n');
 		i = i->next;
 	}
-	r = ft_fit_tetriminos(l);
-	if (!r && l)
-		r = ft_solve(l, &s, ft_max(l));
+	if (l)
+		r = ft_solve(l, &s);
 		ft_putendl("GOD");
 	if (s)
 		ft_print_square(&s, r);

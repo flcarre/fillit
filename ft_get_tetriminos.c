@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:59:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 16:56:24 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 18:26:21 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,19 @@ static int	ft_get(const int fd, char **tmp)
 	return ((r[0] < 0) ? -2 : 0);
 }
 
-int			ft_get_tetriminos(const int fd, t_list **list)
+int			ft_get_tetriminos(const int fd, t_tet **list)
 {
-	t_list		*new;
+	t_tet		*new;
 	char		*tmp;
 	int			r;
 
+	new = *list;
 	while ((r = ft_get(fd, &tmp)) > 0)
 	{
-		ft_lstenqueue(list, (new = ft_new_tetrimino(tmp)));
+		new = ft_new_tetrimino(tmp);
 		if (!new)
 		{
+			free(tmp);
 			ft_del_tetriminos(list);
 			return (-1);
 		}

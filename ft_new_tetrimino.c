@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_new_tetrimino.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:06:28 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/23 18:43:02 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 18:24:53 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-static t_list	*ft_lstvar_us(unsigned short us)
+/*
+static t_tet	*ft_lstvar_us(unsigned short us)
 {
-	t_list			*tmp;
+	t_tet			*tmp;
 
 	if (!(tmp = ft_lstnew((const void *)&us, sizeof(unsigned short))))
 		return ((void *)0);
@@ -27,10 +27,10 @@ static t_list	*ft_lstvar_us(unsigned short us)
 	return (tmp);
 }
 
-static t_list	*ft_lstvar(void)
+static t_tet	*ft_lstvar(void)
 {
-	t_list			*new;
-	t_list			*tmp;
+	t_tet			*new;
+	t_tet			*tmp;
 	char			c;
 	unsigned short	us;
 
@@ -53,10 +53,10 @@ static t_list	*ft_lstvar(void)
 	return (tmp);
 }
 
-static t_list	*ft_lstparam(char *tetrimino)
+static t_tet	*ft_lstparam(char *tetrimino)
 {
 	static int		i = 0;
-	t_list			*tmp;
+	t_tet			*tmp;
 	char			*c;
 
 	if (!(tmp = ft_lstvar()))
@@ -70,11 +70,24 @@ static t_list	*ft_lstparam(char *tetrimino)
 	i = (i < 26) ? i + 1 : 0;
 	return (tmp);
 }
+*/
 
-t_list			*ft_new_tetrimino(char *tetrimino)
+
+t_tet			*ft_new_tetrimino(char *tetrimino)
 {
-	t_list			*new;
-	t_list			*tmp;
+	t_tet			*new;
+	static int i = 0;
+
+	if (!(new = (t_tet *)malloc(sizeof(t_tet))))
+		return ((void *)0);
+	new->s = tetrimino;
+	ft_strtobin(tetrimino, &(new->b));
+	new->c = 'A' + i++;
+	ft_measure_tetrimino(&(new->b), &(new->w), &(new->h));
+	return (new);
+	/*
+	t_tet			*new;
+	t_tet			*tmp;
 
 	if (!(tmp = ft_lstnew((void *)0, 0)))
 		return ((void *)0);
@@ -94,5 +107,5 @@ t_list			*ft_new_tetrimino(char *tetrimino)
 	new->content = (void *)tmp;
 	new->content_size = sizeof(t_list) * 5 + ft_strlen(tetrimino) + 1 + \
 						sizeof(unsigned short) * 3 + 1;
-	return (new);
+	return (new);*/
 }

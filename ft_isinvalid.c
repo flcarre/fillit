@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 12:24:07 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/27 12:49:53 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 18:35:05 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,16 @@ static int	ft_is(unsigned short *y, unsigned short mask[19][4])
 	return (1);
 }
 
-int			ft_isinvalid(t_list **list)
+int			ft_isinvalid(t_tet **list)
 {
-	t_list			*l;
+	t_tet			*l;
 	unsigned short	mask[19][4];
 
 	l = *list;
 	while (l)
 	{
 		ft_set_mask(mask);
-		if (ft_is((unsigned short *)(ft_lstipos((t_list *)l->content, \
-			1))->content, mask))
+		if (ft_is(&(l->b), mask))
 		{
 			ft_del_tetriminos(&(*list));
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:45:14 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 17:31:47 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 18:46:00 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	ft_ipos(unsigned short mask[19][4], unsigned short x, \
 	}
 }
 
-static int	ft_fit(t_list *e, unsigned short w, unsigned short h)
+static int	ft_fit(t_tet *e, unsigned short w, unsigned short h)
 {
 	char			*tmp;
 	unsigned short	mask[19][4];
@@ -42,34 +42,26 @@ static int	ft_fit(t_list *e, unsigned short w, unsigned short h)
 	if (!(tmp = ft_strnew(w * h)))
 		return (1);
 	ft_set_mask(mask);
-	ft_ipos(mask, *((unsigned short *)(ft_lstipos(e, 1))->content), &i);
+	ft_ipos(mask, e->b, &i);
 	n = 0;
 	while (n < w * h)
 	{
-		ft_strncpy(tmp + n, (const char *)(((ft_lstipos(e, 0))->content) + i), \
-		(unsigned long)w);
+		ft_strncpy(tmp + n, (e->s) + i, (unsigned long)w);
 		n += w;
 		i += 4;
 	}
-	(ft_lstipos(e, 0))->content = (void *)tmp;
-	(ft_lstipos(e, 0))->content_size = w * h + 1;
+	e->s = tmp;
 	return (0);
 }
 
-int			ft_fit_tetriminos(t_list *list)
+int			ft_fit_tetriminos(t_tet *list)
 {
-	char			*t;
-	unsigned short	w;
-	unsigned short	h;
+	char *t;
 
 	while (list)
 	{
-		t = (char *)(ft_lstipos((t_list *)list->content, 0))->content;
-		w = *((unsigned short *)(ft_lstipos((t_list \
-			*)list->content, 3))->content);
-		h = *((unsigned short *)(ft_lstipos((t_list \
-			*)list->content, 4))->content);
-		if (ft_fit((t_list *)list->content, w, h))
+		t = list->s;
+		if (ft_fit(list, list->w, list->h))
 			return (1);
 		free(t);
 		list = list->next;
