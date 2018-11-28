@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:06:28 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 18:24:53 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 19:25:06 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_tet			*ft_new_tetrimino(char *tetrimino)
 	ft_strtobin(tetrimino, &(new->b));
 	new->c = 'A' + i++;
 	ft_measure_tetrimino(&(new->b), &(new->w), &(new->h));
+	new->next = (void *)0;
 	return (new);
 	/*
 	t_tet			*new;

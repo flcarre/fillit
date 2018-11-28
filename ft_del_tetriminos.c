@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 12:33:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 18:29:16 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 19:20:18 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_del_tetriminos(t_tet **list)
 {
-	if (!list || !(*list))
+	if (!list || !(*list))
 		return ;
 	ft_del_tetriminos(&(*list)->next);
 	free((*list)->s);

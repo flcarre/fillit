@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 18:05:46 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 19:50:19 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int		main(int ac, char **av)
 	}
 	if (l)
 		r = ft_solve(l, &s);
-		ft_putendl("GOD");
 	if (s)
 		ft_print_square(&s, r);
 	ft_del_tetriminos(&l);
