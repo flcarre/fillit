@@ -6,7 +6,7 @@
 /*   By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:24:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 19:46:02 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 20:14:05 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,5 @@ int				get_next_line(const int fd, char **line)
 	}
 	if (r >= 0 && ft_strlen((const char *)p->next->content))
 		return (ft_cpy_n_cut(line, &(p->next)));
-	return ((!(*line = (void *)0) && r < 0) ? -1 : ft_fddel(&fd_buff, &p));
+	return ((r < 0) ? -1 : ft_fddel(&fd_buff, &p));
 }
