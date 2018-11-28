@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 16:35:10 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/28 17:21:36 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int		main(int ac, char **av)
 	while(i)
 	{
 		ft_putendl("width");
-		ft_putnbr(*((int *)(ft_lstipos((t_list *)i->content, 3))->content));
+		ft_putnbr(*((unsigned short *)(ft_lstipos((t_list *)i->content, 3))->content));
 		ft_putchar('\n');
 		ft_putendl("height");
-		ft_putnbr(*((int *)(ft_lstipos((t_list *)i->content, 4))->content));
+		ft_putnbr(*((unsigned short *)(ft_lstipos((t_list *)i->content, 4))->content));
 		ft_putchar('\n');
 		ft_putendl("bin");
-		ft_putnbr(*((int *)(ft_lstipos((t_list *)i->content, 1))->content));
+		ft_putnbr(*((unsigned short *)(ft_lstipos((t_list *)i->content, 1))->content));
 		ft_putchar('\n');
 		ft_putendl("str");
 		ft_putendl((char *)(ft_lstipos((t_list *)i->content, 0))->content);
@@ -50,6 +50,7 @@ int		main(int ac, char **av)
 	}
 	if (l)
 		r = ft_solve(l, &s);
+		ft_putendl("GOD");
 	if (s)
 		ft_print_square(&s, r);
 	ft_del_tetriminos(&l);

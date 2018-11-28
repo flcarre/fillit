@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 12:58:23 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/28 15:07:36 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 17:28:34 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,26 @@ static void	ft_square(char **tab, int size)
 static int	ft_max(t_list *l)
 {
 	int		max;
+	unsigned short h;
+	unsigned short w;
 
 	max = 0;
+	ft_putendl("1");
 	while (l)
 	{
-		max = ((unsigned short)max < \
-		*((unsigned short *)(ft_lstipos((t_list *)l->content, 3))->content)) \
-		? (int)*((unsigned short \
-		*)(ft_lstipos((t_list *)l->content, 3))->content) : max;
-		max = ((unsigned short)max < \
-		*((unsigned short *)(ft_lstipos((t_list *)l->content, 4))->content)) \
-		? (int)*((unsigned short \
-		*)(ft_lstipos((t_list *)l->content, 4))->content) : max;
+		ft_putendl("1.1");
+		w = *((unsigned short *)(ft_lstipos((t_list *)l->content, 3))->content;
+		ft_putendl("1.2");
+		h = *((unsigned short *)(ft_lstipos((t_list *)l->content, 4))->content);
+		ft_putendl("2");
+		max = ((unsigned short)max < w) ? (int)w : max;
+		ft_putendl("3");
+		max = ((unsigned short)max < h) ? (int)h : max;
+		ft_putendl("4");
 		l = l->next;
+		ft_putendl("5");
 	}
+	ft_putendl("WTF");
 	return (max);
 }
 
