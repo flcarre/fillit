@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:59:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/27 12:36:03 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/28 16:26:01 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,13 @@ static int	ft_get(const int fd, char **tmp)
 {
 	char		*line;
 	char		*s;
-	int			i;
-	int			r;
+	int			r[2];
 
-	i = 0;
-	*tmp = (void *)0;
-	while ((r = get_next_line(fd, &line)) > 0)
+	r[1] = 0;
+	tmp = (void *)0;
+	while ((r[0] = get_next_line(fd, &line)) > 0 && ft_strlen(line))
 	{
-		if (!ft_strlen(line) && i == 4)
-			return (1);
-		if (i > 4 || ft_strlen(line) != 4 || ft_badchar(line))
+		if (r[1]++ > 4 || ft_strlen(line) != 4 || ft_badchar(line))
 		{
 			free(line);
 			ft_memdel((void **)&(*tmp));
@@ -46,10 +43,13 @@ static int	ft_get(const int fd, char **tmp)
 		*tmp = ft_strjoin(*tmp, line);
 		if (s)
 			free(s);
-		i++;
 	}
-	ft_memdel((void **)&line);
-	return ((r < 0) ? -2 : 0);
+	if ((!ft_strlen(line) && r[1] == 4))
+	{	
+		ft_memdel((void **)&line);
+		return (1);
+	}
+	return ((r[0] < 0) ? -2 : 0);
 }
 
 int			ft_get_tetriminos(const int fd, t_list **list)
