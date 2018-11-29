@@ -23,6 +23,14 @@ static int	ft_badchar(char *line)
 	return (0);
 }
 
+static void	ft_delbuff(char **s)
+{
+	if (*s)
+		free(*s);
+	if (*(s + 1))
+		free(*(s + 1));
+}
+
 static int	ft_get(const int fd, char **tmp)
 {
 	char		*l[2];
@@ -34,19 +42,17 @@ static int	ft_get(const int fd, char **tmp)
 	{
 		if (r[1] > 4 || ft_strlen(l[0]) != 4 || ft_badchar(l[0]))
 		{
-			free(l[0]);
-			ft_memdel((void **)&(*tmp));
+			ft_memdel((void **)&l[0]);
 			return (-1);
 		}
 		l[1] = *tmp;
 		*tmp = ft_strjoin(*tmp, l[0]);
-		if (l[1])
-			free(l[1]);
+		ft_delbuff(l);
 	}
-	if (l[0] && r[1] == 4)
+	if (!ft_strlen(l[0]))
 	{
 		ft_memdel((void **)&l[0]);
-		return (1);
+		return ((r[1] != 4) ? -1 : 1);
 	}
 	return ((r[0] < 0) ? -2 : 0);
 }

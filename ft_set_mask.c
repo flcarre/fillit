@@ -67,7 +67,7 @@ static void	maskset_4(int i, unsigned short ret[4])
 		ret[0] = 0x4C80;
 	ret[1] = 0x0020;
 	ret[2] = 0x0002;
-	ret[3] = 4;
+	ret[3] = 2;
 }
 
 void		ft_set_mask(unsigned short mask[19][4])

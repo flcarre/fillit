@@ -37,7 +37,7 @@ void		maskset_5(int i, unsigned short ret[4])
 		ret[0] = 0xE800;
 		ret[1] = 0x0400;
 		ret[2] = 0x0004;
-		ret[3] = 4;
+		ret[3] = 3;
 	}
 	if (i == 14)
 	{

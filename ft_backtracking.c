@@ -16,29 +16,25 @@ static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 {
 	int n;
 	unsigned short bin;
-	unsigned short newbin;
-	char *tmp;
+	unsigned short x;
 
-	newbin = 0;
+	x = e->w * e->h;
 	bin = 0;
 	n = 0;
-	tmp = ft_strnew(e->w * e->h);
 	while (n < e->w * e->h && i % size + n % e->w < size)
 	{
-		tmp[n] = tab[i + (n % e->w)];
-		if ((e->s)[n] == '.')
-			tmp[n] = '.';
+		x--;
+		if (tab[i + n % e->w] != '.' && (e->s)[n] != '.')
+			bin += (unsigned short)ft_paw(2, (unsigned int)x);
 		n++;
 		if (n % e->w == 0)
 			i += size;
 	}
 	if ((i % size) + (n % e->w) < size)
 	{
-		ft_strtobin2(tmp, &newbin, (int)(e->w * e->h));
-		if(newbin == 0)
+		if(bin == 0)
 			return (1);
 	}
-			free(tmp);
 	return(0);
 }
 

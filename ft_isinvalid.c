@@ -19,11 +19,9 @@ static int	ft_is(unsigned short *y, unsigned short mask[19][4])
 	n = -1;
 	while (++n < 19)
 	{
-		while ((mask[n][0] & mask[n][1]) != mask[n][1] \
-		|| (mask[n][1] & mask[n][2]) != mask[n][2])
+		while ((mask[n][0] & *y) != *y \
+				&& (mask[n][0] & mask[n][2]) != mask[n][2])
 		{
-			if ((mask[n][0] & *y) == *y)
-				return (0);
 			if ((mask[n][0] & mask[n][1]) == mask[n][1])
 			{
 				mask[n][0] = mask[n][0] >> mask[n][3];
@@ -41,14 +39,13 @@ static int	ft_is(unsigned short *y, unsigned short mask[19][4])
 int			ft_isinvalid(t_tet **list)
 {
 	t_tet			*l;
-	int				i;
 	unsigned short	mask[19][4];
 
 	l = *list;
 	while (l)
 	{
 		ft_set_mask(mask);
-		if ((i = ft_is(&(l->b), mask)))
+		if (ft_is(&(l->b), mask))
 		{
 			ft_del_tetriminos(&(*list));
 			return (1);
