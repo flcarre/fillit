@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 13:29:13 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/29 12:31:29 by lutsiara         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:07:21 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,22 @@ static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 	bin = 0;
 	n = 0;
 	tmp = ft_strnew(e->w * e->h);
-	while (n < e->w * e->h)
+	while (n < e->w * e->h && i % size + n % e->w < size)
 	{
-		tmp[n] = tab[i + n % e->w];
+		tmp[n] = tab[i + (n % e->w)];
 		if ((e->s)[n] == '.')
 			tmp[n] = '.';
 		n++;
 		if (n % e->w == 0)
 			i += size;
 	}
-	ft_strtobin2(tmp, &newbin, (int)(e->w * e->h));
-	free(tmp);
-	if(newbin == 0)
-		return (1);
+	if ((i % size) + (n % e->w) < size)
+	{
+		ft_strtobin2(tmp, &newbin, (int)(e->w * e->h));
+		if(newbin == 0)
+			return (1);
+	}
+			free(tmp);
 	return(0);
 }
 
@@ -76,7 +79,7 @@ int			ft_backtracking(int size, char *tab, t_tet *l)
 	if (!l)
 		return (1);
 	i = 0;
-	while (i < size * size)
+	while (i < size * size && i / size + l->h <= size)
 	{
 		if (ft_isfree(size, tab, l, i))
 		{
