@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 13:29:13 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/28 23:40:24 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/29 11:14:33 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,23 @@ static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 	bin = 0;
 	n = 0;
 	tmp = ft_strnew(e->w * e->h);
-	while (n < e->w * e->h && i + e->w * e->h < size * size)
+	while (n < e->w * e->h)
 	{
-		tmp[n] = tab[i];
-		n++;
-		printf("n = %d w = %d\n", n, (int)e->w);
-		if (n % e->w == 0)
+		tmp[n] = tab[i + n];
+		printf("tmp ==== %c\n", tmp[n]);
+		if ((e->s)[n] == '.')
+			tmp[n] = '.';
+			n++;
+		if (n % e->w == 0 && n != 0)
 		{
 			i += size;
 		}
-		else
-			i++;
 	}
 	ft_strtobin2(tmp, &newbin, (int)(e->w * e->h));
-	ft_strtobin2(e->s, &bin, (int)(e->w * e->h));
-	printf("new = %x ///// bin =%x\n", newbin, bin);
-	printf("newstr = %s ///// str =%s\n", tmp, e->s);
-	free(tmp);
-	if((bin ^ newbin) == bin)
+	printf("bin = %x\n", newbin);
+	printf("newstr = %s\n", tmp);
+	printf("   str = %s\n",e->s);
+	if(newbin == 0)
 	{
 		printf("____________________________\n");
 		return (1);
@@ -48,34 +47,31 @@ static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 	return(0);
 }
 
-static void	ft_place(int size, char *tab, t_tet *l, int i)
+static void	ft_place(int size, char *tab, t_tet *e, int i)
 {
+	int n;
 
-	unsigned short	n[2];
-	char			c;
-
-	c = l->c;
-	n[1] = 0;
-	n[0] = 0;
-	while (n[1] < l->w * l->h)
+	n = 0;
+	while (n < e->w * e->h && tab[i + n] != 0)
 	{
-		tab[i + n[0]] = (tab[i + n[0]] == '.' && (l->s)[n[1]] == '#') ? c : '.';
-		n[0] += (!(n[1] % l->w) && n[1]) ? size : 1;
-		n[1]++;
+		if ((e->s)[n] == '#')
+			tab[i + n] = e->c;
+		size++;
+		n++;
 	}
 }
 
-static void	ft_reset(int size, char *tab, t_tet *l, int i)
+static void	ft_reset(int size, char *tab, t_tet *e, int i)
 {
-	unsigned short	n[2];
+	int n;
 
-	n[1] = 0;
-	n[0] = 0;
-	while (n[1] < l->w * l->h)
+	n = 0;
+	while (n < e->w * e->h && tab[i + n] != 0)
 	{
-		tab[i + n[0]] = ((l->s)[n[1]] == '#') ? '.' : tab[i + n[0]];
-		n[0] += (!(n[1] % l->w) && n[1]) ? size : 1;
-		n[1]++;
+		if ((e->s)[n] == '#')
+			tab[i + n] = '.';
+		size++;
+		n++;
 	}
 }
 
@@ -87,9 +83,14 @@ int			ft_backtracking(int size, char *tab, t_tet *l)
 	if (!l)
 		return (1);
 	i = 0;
-	while (tab[i] && (i + l->w * l->h) < size * size)
+	while (tab[i] && (i + l->w * l->h) <= size * size)
 	{
-		if ((z = ft_isfree(size, tab, l, i)))
+		tab[1] = '#';
+	/*	tab[1] = '#';
+		tab[5] = '#';
+		tab[9] = '#';
+		tab[13] = '#';
+		*/if ((z = ft_isfree(size, tab, l, i)))
 		{
 			printf("test %d\n", z);
 			ft_place(size, tab, l, i);
