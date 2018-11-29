@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 12:24:07 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 21:02:14 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/29 14:25:33 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	ft_is(unsigned short *y, unsigned short mask[19][4])
 	n = -1;
 	while (++n < 19)
 	{
-		while ((mask[n][0] & mask[n][2]) != mask[n][2])
+		while ((mask[n][0] & mask[n][1]) != mask[n][1] \
+		|| (mask[n][1] & mask[n][2]) != mask[n][2])
 		{
 			if ((mask[n][0] & *y) == *y)
 				return (0);
