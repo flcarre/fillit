@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 13:29:13 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/29 11:14:33 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/11/29 11:24:01 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 {
 	int n;
+	int h;
 	unsigned short bin;
 	unsigned short newbin;
 	char *tmp;
@@ -22,29 +23,32 @@ static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 	newbin = 0;
 	bin = 0;
 	n = 0;
-	tmp = ft_strnew(e->w * e->h);
-	while (n < e->w * e->h)
+	h = e->h;
+	tmp = ft_strnew(e->w);
+	while (h)
 	{
-		tmp[n] = tab[i + n];
-		printf("tmp ==== %c\n", tmp[n]);
-		if ((e->s)[n] == '.')
-			tmp[n] = '.';
-			n++;
-		if (n % e->w == 0 && n != 0)
+		while (n < e->w && tab[i + n])
 		{
-			i += size;
+			tmp = ft_strnew(e->w);
+			tmp[n] = tab[i + n];
+			printf("tmp ==== %c\n", tmp[n]);
+			if ((e->s)[n] == '.')
+				tmp[n] = '.';
+			n++;
 		}
+		ft_strtobin2(tmp, &newbin, (int)(e->w * e->h));
+		printf("bin = %x\n", newbin);
+		printf("newstr = %s\n", tmp);
+		printf("   str = %s\n",e->s);
+		if(newbin != 0)
+		{
+			printf("____________________________\n");
+			return (0);
+		}
+		i += size;
+		h--;
 	}
-	ft_strtobin2(tmp, &newbin, (int)(e->w * e->h));
-	printf("bin = %x\n", newbin);
-	printf("newstr = %s\n", tmp);
-	printf("   str = %s\n",e->s);
-	if(newbin == 0)
-	{
-		printf("____________________________\n");
-		return (1);
-	}
-	return(0);
+	return(1);
 }
 
 static void	ft_place(int size, char *tab, t_tet *e, int i)
