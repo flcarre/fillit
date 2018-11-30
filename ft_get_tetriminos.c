@@ -14,21 +14,35 @@
 
 static int	ft_badchar(char *line)
 {
+	static char	i = 0;
+	static char	c = 0;
+
+	i++;
 	while (*line)
 	{
 		if (*line != '.' && *line != '#')
 			return (1);
+		c += (*line == '#') ? 1 : 0;
 		line++;
+	}
+	if (i == 4 && c != 4)
+	{
+		c = 0;
+		i = 0;
+		return (1);
+	}
+	if (i == 4)
+	{
+		i = 0;
+		c = 0;
 	}
 	return (0);
 }
 
 static void	ft_delbuff(char **s)
 {
-	if (*s)
-		free(*s);
-	if (*(s + 1))
-		free(*(s + 1));
+	ft_memdel((void **)&(*(s + 1)));
+	ft_memdel((void **)&(*s));
 }
 
 static int	ft_get(const int fd, char **tmp)
@@ -38,6 +52,7 @@ static int	ft_get(const int fd, char **tmp)
 
 	r[1] = 0;
 	*tmp = (void *)0;
+	l[0] = (void *)0;
 	while ((r[0] = get_next_line(fd, &l[0])) > 0 && ft_strlen(l[0]) && ++r[1])
 	{
 		if (r[1] > 4 || ft_strlen(l[0]) != 4 || ft_badchar(l[0]))
@@ -49,7 +64,7 @@ static int	ft_get(const int fd, char **tmp)
 		*tmp = ft_strjoin(*tmp, l[0]);
 		ft_delbuff(l);
 	}
-	if (!ft_strlen(l[0]))
+	if (r[0] && !ft_strlen(l[0]))
 	{
 		ft_memdel((void **)&l[0]);
 		return ((r[1] != 4) ? -1 : 1);
