@@ -21,7 +21,7 @@ typedef struct		s_list
 }					t_list;
 
 unsigned long		ft_abs(long x);
-long				ft_paw(long x, unsigned int n);
+long				ft_pow(long x, unsigned int n);
 void				*ft_memset(void *b, int c, unsigned long len);
 void				ft_bzero(void *s, unsigned long n);
 void				*ft_memcpy(void *dst, const void *src, unsigned long n);

@@ -24,7 +24,7 @@ static void	maskset_1(int i, unsigned short ret[4])
 		ret[0] = 0x2E00;
 	if (i == 17)
 		ret[0] = 0xC600;
-	ret[1] = 0x0010;
+	ret[1] = 0x0100;
 	ret[2] = 0x0001;
 	ret[3] = 3;
 }
@@ -41,7 +41,7 @@ static void	maskset_2(int i, unsigned short ret[4])
 		ret[0] = 0x88C0;
 	if (i == 13)
 		ret[0] = 0x8C40;
-	ret[1] = 0x0100;
+	ret[1] = 0x0010;
 	ret[2] = 0x0001;
 	ret[3] = 2;
 }

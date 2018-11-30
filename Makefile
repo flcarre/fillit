@@ -95,7 +95,7 @@ LIBSRCS = $(SRCDIR)ft_atoi.c \
 		  $(SRCDIR)ft_tolower.c \
 		  $(SRCDIR)ft_toupper.c \
 		  $(SRCDIR)ft_abs.c \
-		  $(SRCDIR)ft_paw.c \
+		  $(SRCDIR)ft_pow.c \
 		  $(SRCDIR)ft_lstipos.c \
 		  $(SRCDIR)get_next_line.c
 
@@ -111,7 +111,6 @@ SRCS = $(SRCDIR)main.c \
 	   $(SRCDIR)ft_isinvalid.c \
 	   $(SRCDIR)ft_solve.c \
 	   $(SRCDIR)ft_fit_tetriminos.c \
-	   $(SRCDIR)ft_binchar_to_short.c \
 	   $(SRCDIR)ft_backtracking.c \
 	   $(SRCDIR)ft_measure_tetrimino.c \
 	   $(SRCDIR)ft_print_square.c

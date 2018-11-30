@@ -21,13 +21,22 @@ static void	ft_square(char **tab, int size)
 static int	ft_max(t_tet *l)
 {
 	int		max;
+	int		llen;
 
 	max = 0;
+	llen = 0;
 	while (l)
 	{
 		max = ((unsigned short)max < l->w) ? (int)l->w : max;
 		max = ((unsigned short)max < l->h) ? (int)l->h : max;
 		l = l->next;
+		llen++;
+	}
+	if (llen > 1)
+	{
+		llen *= 4;
+		while (max * max < llen)
+			max++;
 	}
 	return (max);
 }

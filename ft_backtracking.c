@@ -24,17 +24,17 @@ static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 	while (n < e->w * e->h && i % size + n % e->w < size)
 	{
 		x--;
+		if (tab[i + n % e->w] != '.' && (e->s)[n] == '#')
+			return (0);
 		if (tab[i + n % e->w] != '.' && (e->s)[n] != '.')
-			bin += (unsigned short)ft_paw(2, (unsigned int)x);
+			bin += (unsigned short)ft_pow(2, (unsigned int)x);
 		n++;
 		if (n % e->w == 0)
 			i += size;
 	}
 	if ((i % size) + (n % e->w) < size)
-	{
 		if(bin == 0)
 			return (1);
-	}
 	return(0);
 }
 
@@ -75,7 +75,7 @@ int			ft_backtracking(int size, char *tab, t_tet *l)
 	if (!l)
 		return (1);
 	i = 0;
-	while (i < size * size && i / size + l->h <= size)
+	while (i <= size * size - l->h * l->w && i / size + l->h <= size)
 	{
 		if (ft_isfree(size, tab, l, i))
 		{

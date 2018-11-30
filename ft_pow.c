@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_binchar_to_short.c                              :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 22:56:41 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/29 10:34:48 by flcarre          ###   ########.fr       */
+/*   Created: 2018/11/23 15:49:01 by lutsiara          #+#    #+#             */
+/*   Updated: 2018/11/23 15:51:04 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
-void	ft_strtobin2(char *tetrimino, unsigned short *bin, int len)
+long	ft_pow(long x, unsigned int n)
 {
-	unsigned int	i;
+	long	r;
 
-	i = 0;
-	while (len--)
-	{
-		if (tetrimino[len] == '.')
-			i++;
-		else if (tetrimino[len] != '.')
-			*bin += (unsigned short)ft_paw(2, i++);
-	}
+	if (!n)
+		return (1);
+	r = 1;
+	while (n--)
+		r = r * x;
+	return (r);
 }

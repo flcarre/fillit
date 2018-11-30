@@ -24,6 +24,6 @@ void	ft_strtobin(char *tetrimino, unsigned short *bin)
 		if (tetrimino[len] == '.')
 			i++;
 		else if (tetrimino[len] == '#')
-			*bin += (unsigned short)ft_paw(2, i++);
+			*bin += (unsigned short)ft_pow(2, i++);
 	}
 }

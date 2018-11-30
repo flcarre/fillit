@@ -64,7 +64,7 @@ static int	ft_get(const int fd, char **tmp)
 		*tmp = ft_strjoin(*tmp, l[0]);
 		ft_delbuff(l);
 	}
-	if (r[0] && !ft_strlen(l[0]))
+	if ((r[0] && !ft_strlen(l[0])) || *tmp)
 	{
 		ft_memdel((void **)&l[0]);
 		return ((r[1] != 4) ? -1 : 1);
