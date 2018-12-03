@@ -6,12 +6,18 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 20:41:48 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/12/03 13:54:29 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+static int	error_check(int fd)
+{
+	if
+}
+*/
 int		main(int ac, char **av)
 {
 	t_tet			*l;
