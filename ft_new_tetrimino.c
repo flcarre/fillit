@@ -6,16 +6,16 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:06:28 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/11/28 20:39:31 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/12/03 18:27:04 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_tet			*ft_new_tetrimino(char *tetrimino)
+t_tet		*ft_new_tetrimino(char *tetrimino)
 {
 	t_tet			*new;
-	static int i = 0;
+	static int		i = 0;
 
 	if (!(new = (t_tet *)malloc(sizeof(t_tet))))
 		return ((void *)0);

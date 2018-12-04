@@ -6,18 +6,12 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:09:43 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/12/03 13:54:29 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/12/03 18:28:20 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/*
-static int	error_check(int fd)
-{
-	if
-}
-*/
 int		main(int ac, char **av)
 {
 	t_tet			*l;
@@ -31,6 +25,7 @@ int		main(int ac, char **av)
 	fd = open(av[ac - 1], O_RDONLY);
 	if (ac != 2 || (r = ft_get_tetriminos(fd, &l)) == 1 || ft_isinvalid(&l))
 	{
+		close(fd);
 		ft_putendl("error");
 		return (1);
 	}

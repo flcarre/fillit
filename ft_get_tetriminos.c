@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:59:09 by lutsiara          #+#    #+#             */
-/*   Updated: 2018/12/03 14:38:18 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/12/03 18:15:11 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,45 +39,57 @@ static int	ft_badchar(char *line)
 	return (0);
 }
 
-static void	ft_delbuff(char **s)
+static int	ft_init_del(char **s, char **tmp, int *r, int mode)
 {
-	ft_memdel((void **)&(*(s + 1)));
-	ft_memdel((void **)&(*s));
+	static int	i = 0;
+
+	if (!mode)
+	{
+		*r = 0;
+		*tmp = (void *)0;
+		*s = (void *)0;
+		*(s + 1) = (void *)0;
+	}
+	if (mode == 2)
+	{
+		r[0] = (!i) ? 0 : r[0];
+		r[1] = (!i) ? 1 : r[1];
+		r[0]++;
+		i = (!i) ? 1 : i;
+	}
+	if (mode == 1)
+	{
+		ft_memdel((void **)&(*(s + 1)));
+		ft_memdel((void **)&(*s));
+	}
+	return (-1);
 }
 
 static int	ft_get(const int fd, char **tmp)
 {
 	char		*l[2];
 	int			r[2];
-	static int			i = 0;
-	static int			j = 1;
+	static int	i[2];
 
-	r[1] = 0;
-	*tmp = (void *)0;
-	l[0] = (void *)0;
-	i++;
+	ft_init_del((void *)0, (void *)0, i, 2);
+	ft_init_del(l, tmp, &r[1], 0);
 	while ((r[0] = get_next_line(fd, &l[0])) > 0 && ft_strlen(l[0]) && ++r[1])
 	{
 		if (r[1] > 4 || ft_strlen(l[0]) != 4 || ft_badchar(l[0]))
-		{
-			ft_memdel((void **)&l[0]);
-			return (-1);
-		}
+			return (ft_init_del(l, (void *)0, (void *)0, 1));
 		l[1] = *tmp;
 		*tmp = ft_strjoin(*tmp, l[0]);
-		ft_delbuff(l);
+		ft_init_del(l, (void *)0, (void *)0, 1);
 	}
 	if (l[0])
-		j++;
-
-	if ((r[0] && !ft_strlen(l[0])) || *tmp)
+		i[1]++;
+	if (((r[0] && !ft_strlen(l[0])) || *tmp))
 	{
 		ft_memdel((void **)&l[0]);
 		return ((r[1] != 4) ? -1 : 1);
 	}
-	(i == 0) ? r[0] = -1 : 0;
-	if (j >= i)
-		return (-2);
+	if (i[1] >= i[0])
+		return (ft_init_del(l, (void *)0, (void *)0, 1));
 	return ((r[0] < 0) ? -2 : 0);
 }
 
@@ -109,8 +121,6 @@ int			ft_get_tetriminos(const int fd, t_tet **list)
 		}
 		r[1]++;
 	}
-	if (r[0] == -2)
-		return (1);
 	if (r[1] > 26 || r[0] < 0)
 	{
 		ft_del_tetriminos(list);

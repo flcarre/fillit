@@ -6,7 +6,7 @@
 /*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 13:29:13 by flcarre           #+#    #+#             */
-/*   Updated: 2018/11/29 14:23:08 by flcarre          ###   ########.fr       */
+/*   Updated: 2018/12/03 18:24:43 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 {
-	int n;
-	unsigned short bin;
-	unsigned short x;
+	unsigned short	n;
+	unsigned short	bin;
+	unsigned short	x;
 
 	x = e->w * e->h;
 	bin = 0;
@@ -33,14 +33,14 @@ static int	ft_isfree(int size, char *tab, t_tet *e, int i)
 			i += size;
 	}
 	if ((i % size) + (n % e->w) < size)
-		if(bin == 0)
+		if (bin == 0)
 			return (1);
-	return(0);
+	return (0);
 }
 
 static void	ft_place(int size, char *tab, t_tet *e, int i)
 {
-	int n;
+	unsigned short	n;
 
 	n = 0;
 	while (n < e->w * e->h)
@@ -55,7 +55,7 @@ static void	ft_place(int size, char *tab, t_tet *e, int i)
 
 static void	ft_reset(int size, char *tab, t_tet *e, int i)
 {
-	int n;
+	unsigned short	n;
 
 	n = 0;
 	while (n < e->w * e->h)
@@ -70,7 +70,7 @@ static void	ft_reset(int size, char *tab, t_tet *e, int i)
 
 int			ft_backtracking(int size, char *tab, t_tet *l)
 {
-	int			i;
+	int				i;
 
 	if (!l)
 		return (1);
